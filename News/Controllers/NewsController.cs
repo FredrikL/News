@@ -35,5 +35,11 @@ namespace News.Controllers
             
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public ActionResult Vote(VoteDto vote)
+        {
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
     }
 }
