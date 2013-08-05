@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Net;
+using System.Web.Mvc;
+using News.Models;
 using News.Models.Dto;
 using News.Repository;
 
@@ -21,7 +23,10 @@ namespace News.Controllers
         [HttpPost]
         public ActionResult Submit(SubmitItemDto item)
         {
+            if(string.IsNullOrWhiteSpace(item.Title) || string.IsNullOrWhiteSpace(item.Url))
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
+            _repo.Add(new NewsItem() {Title = item.Title, Url = item.Url});
             return RedirectToAction("Index");
         }
     }
