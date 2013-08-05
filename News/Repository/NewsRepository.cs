@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using Dapper;
 using News.Models;
 
 namespace News.Repository
@@ -23,7 +24,11 @@ namespace News.Repository
 
         public IEnumerable<NewsItem> GetItems()
         {
-            return Enumerable.Empty<NewsItem>();
+            conn.Open();
+            var result = conn.Query<NewsItem>("select * from Items");
+            conn.Close();
+
+            return result;
         }
 
         public void Dispose()
