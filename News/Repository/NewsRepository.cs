@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 using News.Models;
 
 namespace News.Repository
@@ -20,9 +21,9 @@ namespace News.Repository
             throw new System.NotImplementedException();
         }
 
-        public IList<NewsItem> GetItems()
+        public IEnumerable<NewsItem> GetItems()
         {
-            throw new System.NotImplementedException();
+            return Enumerable.Empty<NewsItem>();
         }
 
         public void Dispose()

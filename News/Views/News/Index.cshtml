@@ -1,0 +1,13 @@
+﻿@model System.Collections.Generic.IEnumerable<News.Models.NewsItem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "_Layout.cshtml";
+}
+
+<h2>Index</h2>
+ 
+@foreach (var item in Model)
+{
+    @item.Title <br />
+}

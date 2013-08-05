@@ -6,6 +6,6 @@ namespace News.Repository
     public interface INewsRepository
     {
         void Add(NewsItem item);
-        IList<NewsItem> GetItems();
+        IEnumerable<NewsItem> GetItems();
     }
 }

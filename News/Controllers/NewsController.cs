@@ -11,5 +11,10 @@ namespace News.Controllers
         {
             _repo = repo;
         }
+
+        public ActionResult Index()
+        {
+            return View(_repo.GetItems());
+        }
     }
 }
