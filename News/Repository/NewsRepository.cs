@@ -18,7 +18,10 @@ namespace News.Repository
 
         public void Add(NewsItem item)
         {
-            throw new System.NotImplementedException();
+            conn.Open();
+            conn.Execute("insert into Items(url, title, submitted_by) values(@url, @title, @by)",
+                new {url = item.Url, title = item.Title, by = item.SubmittedBy});
+            conn.Close();
         }
 
         public IEnumerable<NewsItem> GetItems()

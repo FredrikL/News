@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
+using News.Models;
 using News.Repository;
 
 namespace News
@@ -35,6 +36,7 @@ namespace News
         private static void IocRegistration(ContainerBuilder builder)
         {
             builder.RegisterType<NewsRepository>().As<INewsRepository>();
+            builder.RegisterType<UserRepository>().As<IUserRepository>();
 
             //builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
