@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using News.Models.Dto;
 using News.Repository;
 
 namespace News.Controllers
@@ -15,6 +16,13 @@ namespace News.Controllers
         public ActionResult Index()
         {
             return View(_repo.GetItems());
+        }
+
+        [HttpPost]
+        public ActionResult Submit(SubmitItemDto item)
+        {
+
+            return RedirectToAction("Index");
         }
     }
 }

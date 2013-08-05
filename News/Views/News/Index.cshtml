@@ -7,7 +7,20 @@
 
 <h2>Index</h2>
  
-@foreach (var item in Model)
-{
-    @item.Title <br />
-}
+<div>
+    @foreach (var item in Model)
+    {
+        <a href="@item.Url">@item.Title</a> <br />
+    }
+</div>
+
+<div>
+    Submit
+    <form action="/news/submit" method="post">
+        Url: <input type="text" name="url" id="url"/><br />
+        Title: <input type="text" name="title" id="title"/><br />
+        
+        <input type="submit" value="Submit"/>
+
+    </form>
+</div>
