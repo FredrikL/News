@@ -9,6 +9,8 @@ namespace News.Models
 
         public uint Votes { get; set; }
 
+        public int SubmittedBy { get; set; }
+
         //public IList<Comment> Comments { get; set; }
-    } 
+    }
 }
