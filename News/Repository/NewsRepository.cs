@@ -33,6 +33,11 @@ namespace News.Repository
             return result;
         }
 
+        public bool IsUrlUniqe(string url)
+        {
+            return true;
+        }
+
         public void Dispose()
         {
             if (this.conn != null)

@@ -31,6 +31,9 @@ namespace News.Controllers
             if(string.IsNullOrWhiteSpace(item.Title) || string.IsNullOrWhiteSpace(item.Url))
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
+            if(!_newsRepository.IsUrlUniqe(item.Url))
+                return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable); //TODO: for now
+
             _newsRepository.Add(new NewsItem() { Title = item.Title, Url = item.Url, SubmittedBy = _userRepository.GetCurrentUserId() });
             
             return RedirectToAction("Index");

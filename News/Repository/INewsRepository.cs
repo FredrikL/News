@@ -7,5 +7,6 @@ namespace News.Repository
     {
         void Add(NewsItem item);
         IEnumerable<NewsItem> GetItems();
+        bool IsUrlUniqe(string url);
     }
 }

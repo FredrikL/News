@@ -23,6 +23,7 @@ namespace News.Tests
             Fake.InitializeFixture(this);
 
             A.CallTo(() => _userRepository.IsLoggedIn()).Returns(true);
+            A.CallTo(() => _repository.IsUrlUniqe(A<string>._)).Returns(true);
         }
 
         [TestCase("","")]
@@ -81,6 +82,29 @@ namespace News.Tests
             _controller.Submit(input);
 
             A.CallTo(() =>_repository.Add(A<NewsItem>.That.Matches(n => n.SubmittedBy == id))).MustHaveHappened();
+        }
+
+        [Test]
+        public void Should_check_url_for_uniqueness_before_adding_item()
+        {
+            var url = "url://";
+            var input = new SubmitItemDto { Url = url, Title = "title" };
+
+            _controller.Submit(input);
+
+            A.CallTo(() => _repository.IsUrlUniqe(url)).MustHaveHappened();
+        }
+
+        [Test]
+        public void Should_return_X_if_url_isnt_uniqe()
+        {
+            var url = "url://";
+            var input = new SubmitItemDto { Url = url, Title = "title" };
+            A.CallTo(() => _repository.IsUrlUniqe(url)).Returns(false);
+
+            var result = (HttpStatusCodeResult)_controller.Submit(input);
+
+            Assert.That(result.StatusCode, Is.EqualTo(406));
         }
     }
 }
