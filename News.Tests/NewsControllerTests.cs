@@ -3,7 +3,7 @@
 namespace News.Tests
 {
     [TestFixture]
-    public class NewsRepositoryTests
+    public class NewsControllerTests
     {
 
     }
