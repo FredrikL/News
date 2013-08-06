@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Runtime.InteropServices;
+using System.Web.Mvc;
 using FakeItEasy;
 using News.Controllers;
 using News.Models;
@@ -105,6 +106,16 @@ namespace News.Tests
             var result = (HttpStatusCodeResult)_controller.Submit(input);
 
             Assert.That(result.StatusCode, Is.EqualTo(406));
+        }
+
+        [Test]
+        public void Should_not_be_allowed_to_vote_if_not_logged_in()
+        {
+            A.CallTo(() => _userRepository.IsLoggedIn()).Returns(false);
+
+            var result = (HttpStatusCodeResult) _controller.Vote(new VoteDto());
+
+            Assert.That(result.StatusCode, Is.EqualTo(401));
         }
     }
 }

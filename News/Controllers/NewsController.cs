@@ -42,6 +42,9 @@ namespace News.Controllers
         [HttpPost]
         public ActionResult Vote(VoteDto vote)
         {
+            if (!_userRepository.IsLoggedIn())
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
     }
