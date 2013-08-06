@@ -46,7 +46,7 @@ namespace News.Controllers
 
             _newsRepository.Vote(vote.Id, _userRepository.GetCurrentUserId());
 
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
+            return RedirectToAction("Index");
         }
     }
 }
