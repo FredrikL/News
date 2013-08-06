@@ -45,6 +45,8 @@ namespace News.Controllers
             if (!_userRepository.IsLoggedIn())
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
 
+            _newsRepository.Vote(vote.Id, _userRepository.GetCurrentUserId());
+
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
     }

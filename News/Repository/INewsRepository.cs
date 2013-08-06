@@ -8,5 +8,6 @@ namespace News.Repository
         void Add(NewsItem item);
         IEnumerable<NewsItem> GetItems();
         bool IsUrlUniqe(string url);
+        void Vote(int itemId, int userId);
     }
 }

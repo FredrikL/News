@@ -117,5 +117,26 @@ namespace News.Tests
 
             Assert.That(result.StatusCode, Is.EqualTo(401));
         }
+
+        [Test]
+        public void Should_send_vote_item_id_to_repository()
+        {
+            var id = 123;
+
+            _controller.Vote(new VoteDto() {Id = id});
+
+            A.CallTo(() => _repository.Vote(id, A<int>._)).MustHaveHappened();
+        }
+
+        [Test]
+        public void Should_send_user_id_to_repository_when_voting()
+        {
+            var uid = 321;
+            A.CallTo(() => _userRepository.GetCurrentUserId()).Returns(uid);
+
+            _controller.Vote(new VoteDto());
+
+            A.CallTo(() => _repository.Vote(A<int>._, uid)).MustHaveHappened();
+        }
     }
 }

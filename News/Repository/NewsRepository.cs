@@ -38,6 +38,11 @@ namespace News.Repository
             return true;
         }
 
+        public void Vote(int itemId, int userId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Dispose()
         {
             if (this.conn != null)
