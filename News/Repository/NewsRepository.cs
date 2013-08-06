@@ -42,7 +42,8 @@ namespace News.Repository
         public void Vote(int itemId, int userId)
         {
             conn.Open();
-            conn.Execute("insert into VotedOn(item_id, user_id) values(@item, @user)",
+            conn.Execute("insert into VotedOn(item_id, user_id) values(@item, @user);" +
+                         "update Items set Votes = (select count(distinct user_id) from VotedOn where item_id = @item) where id = @item;",
                 new {item = itemId, user = userId});
             conn.Close();
         }
