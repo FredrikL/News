@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Web.UI.WebControls;
 using Dapper;
 using News.Models;
 
@@ -40,7 +41,10 @@ namespace News.Repository
 
         public void Vote(int itemId, int userId)
         {
-            throw new NotImplementedException();
+            conn.Open();
+            conn.Execute("insert into VotedOn(item_id, user_id) values(@item, @user)",
+                new {item = itemId, user = userId});
+            conn.Close();
         }
 
         public void Dispose()
