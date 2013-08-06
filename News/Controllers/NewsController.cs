@@ -39,7 +39,6 @@ namespace News.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
         public ActionResult Vote(VoteDto vote)
         {
             if (!_userRepository.IsLoggedIn())

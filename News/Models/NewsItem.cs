@@ -4,6 +4,8 @@ namespace News.Models
 {
     public class NewsItem
     {
+        public long Id { get; set; }
+
         public string Url { get; set; }
         public string Title { get; set; }
 
